@@ -96,12 +96,12 @@ Configuration
 
 * Synchronise the database
 
-        export DJANGO_SETTINGS_MODULE=omerostats.settings-prod
-        python manage.py syncdb --settings=settings-prod
+        export DJANGO_SETTINGS_MODULE=omero_qa.settings-prod
+        python manage.py syncdb --noinput --settings=omero_qa.settings-prod
 
 * Create admin user
 
-         echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'password')" | python manage.py shell
+         echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'password')" | python manage.py shell --settings=omero_qa.settings-prod
 
 * Collect statics
 
