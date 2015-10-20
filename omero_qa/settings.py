@@ -140,8 +140,6 @@ DEBUG = True
 
 TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = []
-
 ADMINS = (
     # ('Admin name', 'admin email'),
 )
@@ -163,6 +161,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.markup',
+    'omero_qa.feedback',
     'omero_qa.qa',
     'omero_qa.registry',
 )
@@ -270,8 +269,6 @@ SERVER_EMAIL = None
 IPLOCALREGEX = (
     r"(^127\.)|(^192\.168\.)|(^10\.)|(^134\.36\.162\.)|(^172\.1[6-9]\.)|"
     "(^172\.2[0-9]\.)|(^172\.3[0-1]\.)|(^::1$)")
-
-
 
 APPLICATION_HOST = "http://qa.openmicroscopy.org"
 FEEDBACK_URL = "qa.openmicroscopy.org.uk:80"

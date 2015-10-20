@@ -14,7 +14,7 @@ Development Installation
 
 1. Clone the repository
 
-        git clone git@github.com:openmicroscopy/qa.git
+        git clone git@github.com:openmicroscopy/registry.git
 
 2. Set up a virtualenv (http://www.pip-installer.org/) and activate it
 
@@ -98,6 +98,7 @@ Configuration
 
         export DJANGO_SETTINGS_MODULE=omero_qa.settings-prod
         python manage.py syncdb --noinput --settings=omero_qa.settings-prod
+        python manage.py loaddata omero_qa/initial_data.json --settings=omero_qa.settings-prod
 
 * Create admin user
 
