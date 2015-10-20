@@ -177,7 +177,7 @@
         "pk": 1,
         "model": "registry.version",
         "fields": {
-            "version": "5.1.4"
+            "version": "5.2"
         }
     }
 ]
