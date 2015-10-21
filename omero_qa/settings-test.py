@@ -7,6 +7,8 @@ DATABASES['default'] = {
     'TEST_NAME': ':memory:',
 }
 
+SECRET_KEY = 'test_key'
+
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
