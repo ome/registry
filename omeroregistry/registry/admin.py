@@ -23,9 +23,11 @@
 # Version: 1.0
 #
 
-import sys
+from django.contrib import admin
 
-if __name__ == "__main__":
+from omeroregistry.registry.models import Hit, IP, Agent, Version
 
-    from django.core.management import execute_from_command_line
-    execute_from_command_line(sys.argv)
+admin.site.register(Hit)
+admin.site.register(IP)
+admin.site.register(Agent)
+admin.site.register(Version)

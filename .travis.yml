@@ -15,4 +15,4 @@ before_script:
   - gzip -d GeoIP.dat.gz
   - gzip -d GeoLiteCity.dat.gz
 
-script: python manage.py test registry --settings=omero_qa.settings-test -v 2
+script: python manage.py test --settings=omeroregistry.settings-test -v 2
