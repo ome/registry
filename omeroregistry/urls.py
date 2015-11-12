@@ -23,9 +23,30 @@
 # Version: 1.0
 #
 
-import sys
+from django.conf import settings
+from django.conf.urls import include, url, patterns
+from django.contrib import admin
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.http import HttpResponse
 
-if __name__ == "__main__":
+admin.autodiscover()
 
-    from django.core.management import execute_from_command_line
-    execute_from_command_line(sys.argv)
+# url patterns
+urlpatterns = patterns(
+    '',
+    # admin panel support
+    url(r'^admin/', include(admin.site.urls)),
+
+    url(r'^$', 'omeroregistry.registry.views.hit', name='registry_hit'),
+
+    # ROBOTS: go away
+    (r'^robots\.txt$',
+        lambda r: HttpResponse("User-agent: *\nDisallow: /*",
+                               mimetype="text/plain"))
+)
+
+urlpatterns += staticfiles_urlpatterns()
+
+# Only append if urlpatterns are empty
+if settings.DEBUG and not urlpatterns:
+    urlpatterns += staticfiles_urlpatterns()

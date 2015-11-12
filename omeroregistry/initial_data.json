@@ -1,0 +1,122 @@
+[
+    {
+        "pk": 1,
+        "model": "registry.agent",
+        "fields": {
+            "agent_name": "OMERO.importer",
+            "display_name": "OMERO.importer"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "registry.agent",
+        "fields": {
+            "agent_name": "OMERO.insight",
+            "display_name": "OMERO.insight"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "registry.agent",
+        "fields": {
+            "agent_name": "OMERO.editor",
+            "display_name": "OMERO.editor"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "registry.agent",
+        "fields": {
+            "agent_name": "OMERO.fs",
+            "display_name": "OMERO.fs"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "registry.agent",
+        "fields": {
+            "agent_name": "OMERO.web",
+            "display_name": "OMERO.web"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "registry.agent",
+        "fields": {
+            "agent_name": "OMERO.server",
+            "display_name": "OMERO.server"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "registry.agent",
+        "fields": {
+            "agent_name": "OMERO.imagej",
+            "display_name": "Bio-Formats ImageJ plugin"
+        }
+    },
+    {
+        "pk": 8,
+        "model": "registry.agent",
+        "fields": {
+            "agent_name": "OMERO.diagnostics",
+            "display_name": "OMERO.diagnostics"
+        }
+    },
+    {
+        "pk": 9,
+        "model": "registry.agent",
+        "fields": {
+            "agent_name": "OMERO.shell",
+            "display_name": "OMERO.shell"
+        }
+    },
+    {
+        "pk": 10,
+        "model": "registry.agent",
+        "fields": {
+            "agent_name": "OMERO.ij",
+            "display_name": "OMERO.imagej"
+        }
+    },
+    {
+        "pk": 11,
+        "model": "registry.agent",
+        "fields": {
+            "agent_name": "OMERO.importer-cli",
+            "display_name": "OMERO.importer-cli"
+        }
+    },
+    {
+        "pk": 12,
+        "model": "registry.agent",
+        "fields": {
+            "agent_name": "OMERO.dropbox",
+            "display_name": "OMERO.dropbox"
+        }
+    },
+    {
+        "pk": 13,
+        "model": "registry.agent",
+        "fields": {
+            "agent_name": "OMERO.bioformats",
+            "display_name": "BioFormats"
+        }
+    },
+    {
+        "pk": 14,
+        "model": "registry.agent",
+        "fields": {
+            "agent_name": "OMERO.test",
+            "display_name": "OMERO.test"
+        }
+    },
+    {
+        "pk": 15,
+        "model": "registry.agent",
+        "fields": {
+            "agent_name": "OMERO.matlab",
+            "display_name": "OMERO.matlab"
+        }
+    }
+]

@@ -6,8 +6,8 @@ OMERO.qa is the web application which helps support community by OMERO team.
 Requirements
 ============
 
-* PostgreSQL 8.2+
-* Python 2.6+
+* PostgreSQL 9.1+
+* Python 2.7+
 
 Development Installation
 ========================
@@ -19,34 +19,23 @@ Development Installation
 2. Set up a virtualenv (http://www.pip-installer.org/) and activate it
 
         curl -O -k https://raw.github.com/pypa/virtualenv/master/virtualenv.py
-        python virtualenv.py qa-virtualenv
-        source qa-virtualenv/bin/activate
+        python virtualenv.py reg-virtualenv
+        source reg-virtualenv/bin/activate
         pip install numpy
         pip install -r requirements.txt
 
-3. Download and extract the GeoIP country and city databases
+3. Download and extract GeoIP databases
 
-        curl -O http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz
-        curl -O http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
-        gzip -d GeoIP.dat.gz
-        gzip -d GeoLiteCity.dat.gz
+        GeoIP2-Domain.mmdb, GeoIPOrg.dat, GeoLite2-City.mmdb
 
 4. Run tests
 
-        python manage.py test registry --settings=omero_qa.settings-test -v 3
-
-6. Set up your database
-
-        # Create a PostgreSQL user
-        sudo -u postgres createuser -P -D -R -S feedback_user
-        # Create a database
-        sudo -u postgres createdb -O feedback_user feedback
-
+        python manage.py test --settings=omeroregistry.settings-test -v 3
 
 Configuration
 =============
 
-* Create new settings_prod.py and import default settings
+* Create new settings-prod.py and import default settings
 
         from settings import *
 
@@ -58,30 +47,22 @@ Configuration
 * Set `ADMINS`
 
         ADMINS = (
-            ('User name', 'email'),
+            ('Full Name', 'email@example.com'),
         )
 
 * Change database settings
 
-        ...
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'feedback',                      # Or path to database file if using sqlite3.
-        'USER': 'feedback_user',                      # Not used with sqlite3.
-        'PASSWORD': 'password',                  # Not used with sqlite3.
-        'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '5432',                      # Set to empty string for default. Not used with sqlite3.
-        ...
-
-* Modify `FEEDBACK_URL = "qa.openmicroscopy.org.uk:80"` - this is the host where errors should be reported if application itself crashes
-
-* Obtain Google key on http://code.google.com/apis/maps/signup.html optional
-
-* Create rest of required dirs:
-    * UPLOAD_ROOT = "/FileStore" <- this is equivalent of /ome/apache_repo
-    * VALIDATOR_UPLOAD_ROOT = "/Validator"
-    * TESTNG_ROOT = "/TestNG"
- 
-* Set up `APPLICATION_HOST = "http://qa.openmicroscopy.org.uk"`- this is part of the url what appears in email. When user click it, should jump to the feedback page.
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.postgresql_psycopg2',
+                                                # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+                'NAME': 'stats_database',       # Or path to database file if using sqlite3.
+                'USER': 'stats_user',           # Not used with sqlite3.
+                'PASSWORD': 'secret',           # Not used with sqlite3.
+                'HOST': 'localhost',            # Set to empty string for localhost. Not used with sqlite3.
+                'PORT': '5432',                 # Set to empty string for default. Not used with sqlite3.
+            }
+        }
 
 * Set up email server
     
@@ -90,39 +71,34 @@ Configuration
         EMAIL_HOST_PASSWORD = ''
         EMAIL_HOST_USER = ''
         EMAIL_PORT = 25
-        EMAIL_SUBJECT_PREFIX = '[OMERO.qa] '
+        EMAIL_SUBJECT_PREFIX = '[OMERO.stats] '
         EMAIL_USE_TLS = False
-        SERVER_EMAIL = 'A.Tarkowska@dundee.ac.uk' # email address
+        SERVER_EMAIL = 'email@example.com' # email address
 
 * Synchronise the database
 
-        export DJANGO_SETTINGS_MODULE=omero_qa.settings-prod
-        python manage.py syncdb --noinput --settings=omero_qa.settings-prod
-        python manage.py loaddata omero_qa/initial_data.json --settings=omero_qa.settings-prod
+        export DJANGO_SETTINGS_MODULE=omeroregistry.settings-prod
+        python manage.py syncdb
 
-* Create admin user
+        # upgrade DB if needed
+        python manage.py sqlcustom registry | python manage.py dbshell
 
-         echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'password')" | python manage.py shell --settings=omero_qa.settings-prod
 
-* Collect statics
+Deployment
+==========
 
-        python manage.py collectstatic
+* Nginx
 
-Trac systems
-============
+    * Deploy using apache template
 
- * Configure user to create ticket in Trac
- 
-        trac.openmicroscopy.org.uk/ome
+* Apache
 
-Site 1
-======
-
-Login to admin panel and change `Site = 1` to current qa_host qa.openmicroscopy.org.uk.
+    * Update paths in omeroregistry/django.wsgi
+    * Deploy using apache template
 
 Legal
 =====
 
-The source for OMERO.qa is released under the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+The source for OMERO.registry is released under the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
-OMERO.qa is Copyright (C) 2008-2015 University of Dundee
+OMERO.registry is Copyright (C) 2015 University of Dundee

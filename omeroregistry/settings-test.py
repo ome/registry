@@ -23,9 +23,15 @@
 # Version: 1.0
 #
 
-import sys
+from settings import *  # NOQA
 
-if __name__ == "__main__":
+DATABASES['default'] = {
+    'ENGINE': 'django.db.backends.sqlite3',
+    'TEST_CHARSET': 'UTF8',
+    'NAME': ':memory:',
+    'TEST_NAME': ':memory:',
+}
 
-    from django.core.management import execute_from_command_line
-    execute_from_command_line(sys.argv)
+DEBUG = False
+
+SECRET_KEY = '1'
