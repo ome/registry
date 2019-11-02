@@ -9,7 +9,7 @@
 # Dependency of matplotlib that no longer supports PY26
 mock==2.0.0
 
-Django==1.4.22
+Django==1.11.23
 psycopg2==2.5.3
 PIL==1.1.7
 matplotlib==1.4.3
